@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel do Aluno | SGBE</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background: #17365d;
+            color: white;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        .usuario {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CONTEÚDO */
+        main {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .boas-vindas {
+            margin-bottom: 30px;
+        }
+
+        .boas-vindas h1 {
+            color: #17365d;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .boas-vindas p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* CARDS DE RESUMO */
+        .resumo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .card-resumo {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+            border-left: 5px solid #2563eb;
+        }
+
+        .card-resumo h3 {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .card-resumo strong {
+            font-size: 28px;
+            color: #17365d;
+        }
+
+        .card-resumo.atencao {
+            border-left-color: #f59e0b;
+        }
+
+        .card-resumo.atraso {
+            border-left-color: #dc2626;
+        }
+
+        /* BUSCA */
+        .busca {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+        }
+
+        .busca h2 {
+            font-size: 20px;
+            color: #17365d;
+            margin-bottom: 17px;
+        }
+
+        .campo-busca {
+            display: flex;
+            gap: 10px;
+        }
+
+        .campo-busca input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .campo-busca input:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        /* EMPRÉSTIMOS */
+        .emprestimos {
+            margin-bottom: 30px;
+        }
+
+        .titulo-secao {
+            color: #17365d;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .livro {
+            background: white;
+            padding: 23px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+        }
+
+        .livro h3 {
+            font-size: 17px;
+            color: #1e293b;
+            margin-bottom: 9px;
+        }
+
+        .livro p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 7px;
+        }
+
+        .em-dia {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .proximo {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .atrasado {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .renovar {
+            background: #17365d;
+            min-width: 110px;
+        }
+
+        /* AVISO */
+        .aviso {
+            background: #e0f2fe;
+            border-left: 5px solid #0284c7;
+            padding: 20px;
+            border-radius: 8px;
+            color: #075985;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* INFORMAÇÕES */
+        .informacoes {
+            background: white;
+            padding: 23px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .informacoes h2 {
+            color: #17365d;
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .informacoes p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #17365d;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 45px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin: 6px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .usuario {
+                text-align: center;
+            }
+
+            .resumo {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-busca {
+                flex-direction: column;
+            }
+
+            .livro {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .renovar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+
+        <div class="logo">
+            SGBE <span>Biblioteca Escolar</span>
+        </div>
+
+        <div class="usuario">
+            <strong>Levi De Soti Guarato</strong>
+            <br>
+            Área do Aluno
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- BOAS-VINDAS -->
+        <section class="boas-vindas">
+
+            <h1>Olá, Levi! 👋</h1>
+
+            <p>
+                Bem-vindo ao Sistema de Gestão de Biblioteca Escolar.
+                Consulte o catálogo e acompanhe seus empréstimos.
+            </p>
+
+        </section>
+
+        <!-- RESUMO -->
+        <section class="resumo">
+
+            <div class="card-resumo">
+                <h3>📚 Livros emprestados</h3>
+                <strong>03</strong>
+            </div>
+
+            <div class="card-resumo atencao">
+                <h3>⏰ Devoluções próximas</h3>
+                <strong>01</strong>
+            </div>
+
+            <div class="card-resumo atraso">
+                <h3>⚠ Em atraso</h3>
+                <strong>01</strong>
+            </div>
+
+        </section>
+
+        <!-- PESQUISA -->
+        <section class="busca">
+
+            <h2>🔎 Consultar catálogo de livros</h2>
+
+            <div class="campo-busca">
+
+                <input
+                    type="search"
+                    placeholder="Pesquise por título, autor ou categoria..."
+                    aria-label="Pesquisar livros"
+                >
+
+                <button type="button">Buscar livros</button>
+
+            </div>
+
+        </section>
+
+        <!-- EMPRÉSTIMOS -->
+        <section class="emprestimos">
+
+            <h2 class="titulo-secao">
+                📖 Meus Empréstimos Atuais
+            </h2>
+
+            <!-- LIVRO 1 -->
+            <div class="livro">
+
+                <div>
+
+                    <h3>Algoritmos e Lógica de Programação</h3>
+
+                    <p><strong>Autor:</strong> André Luiz Villar Forbellone</p>
+
+                    <p><strong>Data de empréstimo:</strong> 22/10/2026</p>
+
+                    <p><strong>Data de devolução:</strong> 05/11/2026</p>
+
+                    <span class="status em-dia">
+                        Em dia
+                    </span>
+
+                </div>
+
+                <button class="renovar" type="button">
+                    Renovar
+                </button>
+
+            </div>
+
+            <!-- LIVRO 2 -->
+            <div class="livro">
+
+                <div>
+
+                    <h3>Fundamentos de Redes de Computadores</h3>
+
+                    <p><strong>Autor:</strong> Gabriel Torres</p>
+
+                    <p><strong>Data de empréstimo:</strong> 19/10/2026</p>
+
+                    <p><strong>Data de devolução:</strong> 02/11/2026</p>
+
+                    <span class="status proximo">
+                        Devolução próxima
+                    </span>
+
+                </div>
+
+                <button class="renovar" type="button">
+                    Renovar
+                </button>
+
+            </div>
+
+            <!-- LIVRO 3 -->
+            <div class="livro">
+
+                <div>
+
+                    <h3>Matemática Aplicada à Tecnologia</h3>
+
+                    <p><strong>Autor:</strong> Livro didático escolar</p>
+
+                    <p><strong>Data de empréstimo:</strong> 11/10/2026</p>
+
+                    <p><strong>Data de devolução:</strong> 25/10/2026</p>
+
+                    <span class="status atrasado">
+                        Em atraso
+                    </span>
+
+                </div>
+
+                <button class="renovar" type="button">
+                    Renovar
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- AVISO -->
+        <section class="aviso">
+
+            <strong>⚠ Aviso importante!</strong>
+
+            <br>
+
+            Fique atento aos prazos de devolução dos livros.
+            Em caso de atraso, procure o bibliotecário para
+            verificar sua situação e possíveis multas.
+
+            A renovação está sujeita às regras da biblioteca
+            e à disponibilidade dos exemplares.
+
+        </section>
+
+        <!-- INFORMAÇÕES -->
+        <section class="informacoes">
+
+            <h2>ℹ Informações da Biblioteca</h2>
+
+            <p>
+                Por meio do SGBE, os alunos podem consultar o catálogo,
+                verificar a disponibilidade dos livros, acompanhar
+                seus empréstimos e solicitar renovações.
+
+                <br>
+
+                Para dúvidas sobre empréstimos, devoluções ou multas,
+                entre em contato com o bibliotecário responsável.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <p>
+            <strong>SGBE - Sistema de Gestão de Biblioteca Escolar</strong>
+        </p>
+
+        <p>Escola Técnica | Painel do Aluno</p>
+
+        <p>Projeto acadêmico de Engenharia de Requisitos</p>
+
+        <p>Desenvolvido por Levi De Soti Guarato - 2026</p>
+
+    </footer>
+
+</body>
+</html>
